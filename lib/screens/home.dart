@@ -87,12 +87,15 @@ class home extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 5,
+          ),
           Text(
             music.name,
             style: TextStyle(color: Colors.greenAccent, fontSize: 22),
           ),
           SizedBox(
-            height: 7,
+            height: 5,
           ),
           Text(music.desc,
               style: TextStyle(color: Colors.orange.shade400, fontSize: 18))

@@ -25,7 +25,7 @@ class CategoryOperations {
         'https://c-cl.cdn.smule.com/rs-s78/arr/f5/4e/27b764f1-91f2-41e7-934a-5bedf8b1751a.jpg',
       ),
       Category(
-        'Arijit Singh',
+        'Arijit\nSingh',
         'https://c-cl.cdn.smule.com/rs-s90/arr/5c/65/24fce9ff-7878-4c3a-b818-6a91ee37a2aa.jpg',
       )
     ];
