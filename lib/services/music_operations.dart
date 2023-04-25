@@ -42,6 +42,11 @@ class MusicOperations {
           'https://c.ndtvimg.com/2021-03/6kl5pk58_farhans-toofan_625x300_10_March_21.jpg',
           'Dekh Toofan Aaya Hai',
           'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'),
+      Music(
+          'Ae Dil hai Mushkil',
+          'https://c-cl.cdn.smule.com/rs-s56/arr/3f/3d/df91a6b9-4384-4294-92c1-e1d684b515ec.jpg',
+          'Channa mere ya',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/5c/c2/c9/5cc2c932-e065-e99d-8721-e0eac4e31872/mzaf_17529033236526534532.plus.aac.p.m4a')
 
 //itunes
 /*

@@ -1,33 +1,46 @@
 import 'package:audio_music_player/models/category.dart';
 import 'package:audio_music_player/models/music.dart';
+import 'package:audio_music_player/screens/Screen2.dart';
 import 'package:audio_music_player/services/category-operations.dart';
 import 'package:audio_music_player/services/music_operations.dart';
 import 'package:flutter/material.dart';
 
 class home extends StatelessWidget {
   Function _miniPlayer;
-  home(this._miniPlayer, {super.key}); // Dart Constructor ShortHand
+  Function _miniPlayer_grid;
+
+  home(this._miniPlayer, this._miniPlayer_grid,
+      {super.key}); // Dart Constructor ShortHand
 
   // const home({Key? key}) : super(key: key);
 //For grid layout
-  Widget createCategory(Category category) {
-    return Container(
-        color: Colors.grey.shade700,
-        child: Row(
-          children: [
-            Image.network(category.imageURL, fit: BoxFit.cover),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                category.name,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-            )
-          ],
-        ));
+  Widget createCategory(Category category, BuildContext context) {
+    return InkWell(
+      onTap: () {
+        print("Inside on tap");
+
+        //_miniPlayer_grid(category, stop: true);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Screen2()));
+      },
+      child: Container(
+          color: Colors.grey.shade700,
+          child: Row(
+            children: [
+              Image.network(category.imageURL, fit: BoxFit.cover),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  category.name,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              )
+            ],
+          )),
+    );
   }
 
 //Appbar layout
@@ -44,26 +57,26 @@ class home extends StatelessWidget {
   }
 
 //grid structure
-  Widget createGrid() {
+  Widget createGrid(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
       height: 280,
       child: GridView.count(
         childAspectRatio: 5 / 2,
         crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children: createListOfCategories(), //calling network fetched values
+        mainAxisSpacing: 10, //calling network fetched values
         crossAxisCount: 2,
+        children: createListOfCategories(context),
       ),
     );
   }
 
-  List<Widget> createListOfCategories() {
+  List<Widget> createListOfCategories(BuildContext context) {
     List<Category> categoryList =
         CategoryOperations.getCategories(); // Rec Data
     // Convert Data to Widget Using map function
     List<Widget> categories = categoryList
-        .map((Category category) => createCategory(category))
+        .map((Category category) => createCategory(category, context))
         .toList();
     return categories;
   }
@@ -137,23 +150,23 @@ class home extends StatelessWidget {
     return SingleChildScrollView(
       child: SafeArea(
           child: Container(
-        child: Column(
-          children: [
-            createAppBar('Music Player'),
-            SizedBox(
-              height: 5,
-            ),
-            createGrid(),
-            createMusicList('Made for you'),
-            createMusicList('Popular PlayList')
-          ],
-        ),
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [Colors.teal.shade800, Colors.black],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                stops: [0.1, 0.3])),
+                stops: const [0.1, 0.3])),
+        child: Column(
+          children: [
+            createAppBar('Music Player'),
+            const SizedBox(
+              height: 5,
+            ),
+            createGrid(context),
+            createMusicList('Made for you'),
+            createMusicList('Popular PlayList')
+          ],
+        ),
         //child: Text('Hello Flutter'),
         //color: Colors.orange,
       )),

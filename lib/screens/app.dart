@@ -1,3 +1,4 @@
+import 'package:audio_music_player/models/category.dart';
 import 'package:audio_music_player/models/music.dart';
 import 'package:audio_music_player/screens/home.dart';
 import 'package:audio_music_player/screens/search.dart';
@@ -17,6 +18,7 @@ class _MyAppState extends State<MyApp> {
   int currentTabIndex = 0;
   bool isPlaying = false;
   Music? music;
+  Category? category;
   AudioPlayer _audioPlayer = new AudioPlayer();
 
   Widget miniplayer(Music? music, {bool stop = false}) {
@@ -62,17 +64,67 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  Widget miniplayer_grid(Category? category, {bool stop = false}) {
+    this.category = category;
+    if (category == null) {
+      return SizedBox();
+    }
+    if (stop) {
+      isPlaying = false;
+      _audioPlayer.stop();
+    }
+    setState(() {});
+
+    Size deviceSize = MediaQuery.of(context).size;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 500),
+      color: Colors.blue,
+      width: deviceSize.width / 1.3,
+      height: 50,
+      child: Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.network(category.imageURL, fit: BoxFit.scaleDown),
+            Text(
+              category.name,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            IconButton(
+                onPressed: () async {
+                  isPlaying = !isPlaying;
+                  if (isPlaying) {
+                    await _audioPlayer.play(category.audioURL);
+                  } else {
+                    await _audioPlayer.pause();
+                  }
+                  setState(() {});
+                },
+                icon: isPlaying
+                    ? Icon(Icons.pause, color: Colors.white)
+                    : Icon(Icons.play_arrow, color: Colors.white))
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   initState() {
     super.initState();
-    Tabs = [home(miniplayer), search(), yourlibrary()];
+    Tabs = [home(miniplayer, miniplayer_grid), search(), yourlibrary()];
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Tabs[currentTabIndex],
+        body: Stack(
+          children: [
+            Tabs[currentTabIndex],
+            miniplayer_grid(category),
+          ],
+        ),
         backgroundColor: Colors.black,
         bottomNavigationBar: Column(
           mainAxisSize: MainAxisSize.min,

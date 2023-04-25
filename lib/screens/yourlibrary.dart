@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:audio_music_player/models/music.dart';
 import 'package:audio_music_player/services/music_operations.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class yourlibrary extends StatefulWidget {
   const yourlibrary({Key? key}) : super(key: key);
@@ -10,7 +15,16 @@ class yourlibrary extends StatefulWidget {
 }
 
 class _yourlibraryState extends State<yourlibrary> {
+  late AudioCache audioCache;
+  late AudioPlayer audioPlayer;
+
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    audioPlayer = AudioPlayer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,7 +37,10 @@ class _yourlibraryState extends State<yourlibrary> {
                   end: Alignment.bottomRight,
                   stops: [0.1, 0.3])),
           child: Column(
-            children: [Appbarlibrary(), list()],
+            children: [
+              Appbarlibrary(), list()
+              //  showfile(),
+            ],
           ),
         ),
       ),
@@ -76,5 +93,45 @@ class _yourlibraryState extends State<yourlibrary> {
             style: TextStyle(color: Colors.orange, fontSize: 25),
           ),
         ));
+  }
+
+  Future<File> saveFilePermanently(PlatformFile file) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final newFile = File('${appStorage.path}/${file.name}');
+    return File(file.path!).copy(newFile.path);
+  }
+
+  buttonforfile() {
+    return ElevatedButton(
+        child: Text("pick a file "),
+        onPressed: () async {
+          /*final result = await FilePicker.platform.pickFiles(
+              allowMultiple: true,
+              type: FileType.custom,
+              allowedExtensions: ['mp3']);
+          if (result == null) {
+            return;
+          }
+*/
+/*
+          final fileplay = File(result.files.single.path!);
+          audioPlayer.setUrl(fileplay.path, isLocal: true);
+
+          //open single file
+          final file = result.files.first;
+
+          //openFiles(result.files);
+          print('name  ${file.name}');
+          print('Bytes  ${file.bytes}');
+          print('size  ${file.size}');
+          print('Extension  ${file.extension}');
+          print('path  ${file.path}');
+          final newFile = await saveFilePermanently(file);
+          // button(file);
+          print('from path  ${file.path}');
+          print('To path  ${newFile.path}');
+*/
+          //audioPlayer.play('${newFile.path}');
+        });
   }
 }
