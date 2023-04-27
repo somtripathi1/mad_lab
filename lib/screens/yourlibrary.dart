@@ -38,7 +38,7 @@ class _yourlibraryState extends State<yourlibrary> {
                   stops: [0.1, 0.3])),
           child: Column(
             children: [
-              Appbarlibrary(), list()
+              Appbarlibrary(), buttonforfile(), list()
               //  showfile(),
             ],
           ),
@@ -103,17 +103,16 @@ class _yourlibraryState extends State<yourlibrary> {
 
   buttonforfile() {
     return ElevatedButton(
-        child: Text("pick a file "),
+        child: Text("Pick a file "),
         onPressed: () async {
-          /*final result = await FilePicker.platform.pickFiles(
+          final result = await FilePicker.platform.pickFiles(
               allowMultiple: true,
               type: FileType.custom,
               allowedExtensions: ['mp3']);
           if (result == null) {
             return;
           }
-*/
-/*
+
           final fileplay = File(result.files.single.path!);
           audioPlayer.setUrl(fileplay.path, isLocal: true);
 
@@ -130,7 +129,7 @@ class _yourlibraryState extends State<yourlibrary> {
           // button(file);
           print('from path  ${file.path}');
           print('To path  ${newFile.path}');
-*/
+
           //audioPlayer.play('${newFile.path}');
         });
   }

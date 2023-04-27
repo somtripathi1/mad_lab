@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   bool isPlaying = false;
   Music? music;
   Category? category;
+  bool viewVisible = true;
   AudioPlayer _audioPlayer = new AudioPlayer();
 
   Widget miniplayer(Music? music, {bool stop = false}) {
@@ -30,8 +31,9 @@ class _MyAppState extends State<MyApp> {
       isPlaying = false;
       _audioPlayer.stop();
     }
-    setState(() {});
-
+    setState(() {
+      showWidget();
+    });
     Size deviceSize = MediaQuery.of(context).size;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
@@ -64,6 +66,18 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  void showWidget() {
+    setState(() {
+      viewVisible = true;
+    });
+  }
+
+  void hideWidget() {
+    setState(() {
+      viewVisible = false;
+    });
+  }
+
   Widget miniplayer_grid(Category? category, {bool stop = false}) {
     this.category = category;
     if (category == null) {
@@ -73,10 +87,78 @@ class _MyAppState extends State<MyApp> {
       isPlaying = false;
       _audioPlayer.stop();
     }
-    setState(() {});
-
+    setState(() {
+      //showWidget();
+      //hideWidget();
+    });
     Size deviceSize = MediaQuery.of(context).size;
-    return AnimatedContainer(
+    return Visibility(
+      maintainSize: true,
+      maintainAnimation: true,
+      maintainState: true,
+      visible: viewVisible,
+      child: Container(
+        //width: double.infinity,
+        //set 100% width of container according to parent widget
+        height: deviceSize.height,
+        width: deviceSize.width,
+        margin: EdgeInsets.all(0),
+        padding: EdgeInsets.all(30),
+        //  color: Colors.black.withOpacity(0.7),
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            new BoxShadow(
+              color: Colors.black26.withOpacity(0.7),
+              blurRadius: 7.0,
+              offset: new Offset(1.0, 1.0),
+            ),
+          ],
+        ),
+
+        child: Center(
+          child: SizedBox(
+            width: double.infinity,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              color: Colors.blue,
+              width: deviceSize.width / 1.3,
+              height: deviceSize.height / 1.6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      hideWidget();
+                      //     viewVisible = false;
+                    },
+                    icon: Icon(Icons.close),
+                  ),
+                  Image.network(category.imageURL, fit: BoxFit.scaleDown),
+                  Text(
+                    category.name,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        isPlaying = !isPlaying;
+                        if (isPlaying) {
+                          await _audioPlayer.play(category.audioURL);
+                        } else {
+                          await _audioPlayer.pause();
+                        }
+                        setState(() {});
+                      },
+                      icon: isPlaying
+                          ? Icon(Icons.pause, color: Colors.white)
+                          : Icon(Icons.play_arrow, color: Colors.white))
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    /* AnimatedContainer(
       duration: const Duration(milliseconds: 500),
       color: Colors.blue,
       width: deviceSize.width / 1.3,
@@ -106,7 +188,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
       ),
-    );
+    );*/
   }
 
   @override
@@ -122,7 +204,7 @@ class _MyAppState extends State<MyApp> {
         body: Stack(
           children: [
             Tabs[currentTabIndex],
-            miniplayer_grid(category),
+            Center(child: miniplayer_grid(category)),
           ],
         ),
         backgroundColor: Colors.black,

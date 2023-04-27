@@ -1,6 +1,5 @@
 import 'package:audio_music_player/models/category.dart';
 import 'package:audio_music_player/models/music.dart';
-import 'package:audio_music_player/screens/Screen2.dart';
 import 'package:audio_music_player/services/category-operations.dart';
 import 'package:audio_music_player/services/music_operations.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +16,13 @@ class home extends StatelessWidget {
   Widget createCategory(Category category, BuildContext context) {
     return InkWell(
       onTap: () {
-        print("Inside on tap");
-
-        //_miniPlayer_grid(category, stop: true);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Screen2()));
+        print("Inside on tap  ${category.name}");
+        String name = category.name;
+        print("this is name $name");
+        _miniPlayer_grid(category, stop: true);
+        /*  Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Screen3(category)));
+      */
       },
       child: Container(
           color: Colors.grey.shade700,

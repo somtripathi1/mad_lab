@@ -46,7 +46,32 @@ class MusicOperations {
           'Ae Dil hai Mushkil',
           'https://c-cl.cdn.smule.com/rs-s56/arr/3f/3d/df91a6b9-4384-4294-92c1-e1d684b515ec.jpg',
           'Channa mere ya',
-          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/5c/c2/c9/5cc2c932-e065-e99d-8721-e0eac4e31872/mzaf_17529033236526534532.plus.aac.p.m4a')
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/5c/c2/c9/5cc2c932-e065-e99d-8721-e0eac4e31872/mzaf_17529033236526534532.plus.aac.p.m4a'),
+      Music(
+          'HONEY SINGH',
+          'https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/ca/0c/33/ca0c338b-414d-6beb-9054-42c3f7c58690/cover.jpg/316x316bb.webp',
+          'Brown rang',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/fe/44/4c/fe444c1d-db77-6419-80db-a7a3d6c31d37/mzaf_149552840417104879.plus.aac.p.m4a'),
+      Music(
+          'HONEY SINGH',
+          'https://c-cl.cdn.smule.com/smule-gg-uw1-s-3/sing_google/performance/cover/39/0f/70c9c5e9-a227-4af5-b39b-e77b6822d61e.jpg',
+          'Chaar Botal Vodka',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1b/cd/d3/1bcdd348-f0c7-b94d-37b7-6e0945cd6c1d/mzaf_7307191139894161853.plus.aac.p.m4a'),
+      Music(
+          'HONEY SINGH',
+          'https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/b3/b5/d9/b3b5d986-7f6d-a860-b8aa-769e1eef1a92/8902894356299_cover.jpg/316x316bb.webp',
+          'Desi superstar',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/41/ca/70/41ca70be-2f8b-a239-4b5a-38b0432384c2/mzaf_15409144540645881266.plus.aac.p.m4a'),
+      Music(
+          'HONEY SINGH',
+          'https://is5-ssl.mzstatic.com/image/thumb/Music71/v4/81/0b/a4/810ba47e-952c-8818-ad3c-9899b4928cd4/8902894354943_cover.jpg/316x316bb.webp',
+          'Blue Eyes',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1a/44/fb/1a44fbe0-5172-ddad-8e53-5510ad7dcff9/mzaf_11119624523547880630.plus.aac.p.m4a'),
+      Music(
+          'HONEY SINGH',
+          'https://is4-ssl.mzstatic.com/image/thumb/Music112/v4/b7/39/58/b739588e-58f3-1a1f-df20-39fad0bbc9a4/8720765119596.png/316x316bb.webp',
+          'High Heels',
+          'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b0/57/d1/b057d136-7ef0-fcff-0b46-ea6594516805/mzaf_13685112609860086091.plus.aac.p.m4a')
 
 //itunes
 /*
